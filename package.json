@@ -2,7 +2,7 @@
   "name": "integrity-assignment",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://cninicu.github.io",
+  "homepage": "https://cninicu.github.io/integrity-assignment/",
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
