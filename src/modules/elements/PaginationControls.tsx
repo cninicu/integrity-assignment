@@ -1,49 +1,44 @@
 import React, { ChangeEvent } from "react";
-import { Box, Pagination, useTheme } from "@mui/material";
+import { Box, Pagination, Typography } from "@mui/material";
 
 export type OnPageChange = (event: ChangeEvent<unknown>, page: number) => void;
 
 type PaginationControlsProps = {
   rowsPerPage?: number;
   totalPages: number;
+  totalCount?: number;
+  label?: string;
   currentPage: number;
   onPageChange: OnPageChange;
   color?: "primary" | "secondary";
   disabled?: boolean;
 };
 
-// const useStyles = makeStyles({
-//   root: {
-//     "& .MuiPaginationItem-icon": {
-//       color: (props: { color: "primary" | "secondary" }) =>
-//         `${props.color === "primary" ? YELLOW : BLUE}`,
-//     },
-//
-//     "& .MuiPaginationItem-textPrimary:not(.Mui-selected)": {
-//       color: (props: { color: "primary" | "secondary" }) =>
-//         `${props.color === "primary" ? YELLOW : BLUE}`,
-//     },
-//   },
-// });
-
 export const PaginationControls: React.FC<PaginationControlsProps> = ({
   totalPages,
+  totalCount = 0,
   currentPage,
+  label = "",
   onPageChange,
   color = "primary",
   disabled,
 }) => {
-  const { spacing } = useTheme();
-  // const styles = useStyles({ color });
-
   return (
-    <Box
-      display="flex"
-      alignItems="center"
-      style={{ gap: spacing(2) }}
-      // className={styles.root}
-    >
+    <Box display="flex" justifyContent="space-between" pb={2} pl={2} pr={1}>
+      <Typography variant="subtitle2">
+        Total{" "}
+        <Typography
+          component="span"
+          style={{
+            fontWeight: 600,
+          }}
+        >
+          {totalCount}
+        </Typography>{" "}
+        {label}
+      </Typography>
       <Pagination
+        size="small"
         disabled={disabled}
         color={color}
         count={totalPages}

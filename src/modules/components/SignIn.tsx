@@ -63,7 +63,7 @@ export const SignIn: React.FC = () => {
                   onBlur={handleBlur}
                   value={values.name}
                   name="name"
-                  // error={errors.name}
+                  error={Boolean(errors.name)}
                   id="name"
                 />
               </Box>

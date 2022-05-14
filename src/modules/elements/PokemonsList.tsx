@@ -3,7 +3,7 @@ import "../../App.css";
 import { Box, Button, List, ListItem, Paper, Typography } from "@mui/material";
 import { Pokemon } from "../queries/usePokemonsQuery";
 import { useBag } from "../../state/hooks";
-import { useScopedDowngradedStateValue } from "../hooks/useScopedDowngradedStateValue";
+import { useScopedDowngradedStateValue } from "../hooks";
 
 type PokemonsListProps = {
   items: any[];
@@ -28,7 +28,7 @@ export const PokemonsList: React.FC<PokemonsListProps> = ({
   return (
     <List>
       {items?.map(({ id, name }) => (
-        <ListItem>
+        <ListItem key={id}>
           <Paper
             elevation={3}
             style={{

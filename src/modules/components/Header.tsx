@@ -1,7 +1,8 @@
 import React, { useCallback } from "react";
-import { Box, ButtonBase, Tab, Tabs, Typography } from "@mui/material";
+import { Box, Button, ButtonBase, Tab, Tabs, Typography } from "@mui/material";
 import { useScopedDowngradedStateValue } from "../hooks";
 import { useBag, useUser } from "../../state/hooks";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 import "../../App.css";
 
@@ -20,10 +21,22 @@ export const Header: React.FC = () => {
       display="flex"
       justifyContent="space-between"
       alignItems="center"
-      px={10}
       py={2}
+      px={2}
     >
-      <Typography variant="subtitle1"> Hello, {name} </Typography>
+      <Typography variant="subtitle1">
+        {" "}
+        Hello,{" "}
+        <Typography
+          component="span"
+          style={{
+            fontWeight: 600,
+            // fontStyle: "italic",
+          }}
+        >
+          {name}
+        </Typography>{" "}
+      </Typography>
       <Box>
         <Tabs
           indicatorColor="primary"
@@ -37,7 +50,10 @@ export const Header: React.FC = () => {
           <Tab label="My bag" value="bag" />
         </Tabs>
       </Box>
-      <ButtonBase onClick={logout}> Logout </ButtonBase>
+      <Button size="small" onClick={logout} endIcon={<ExitToAppIcon />}>
+        {" "}
+        Logout{" "}
+      </Button>
     </Box>
   );
 };

@@ -1,16 +1,16 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useScopedDowngradedStateValue } from "./useScopedDowngradedStateValue";
-import { useUser } from "../../state/hooks";
+import { useBag, useUser } from "../../state/hooks";
 
 export const useSignInRedirect = () => {
   const { name } = useScopedDowngradedStateValue(useUser());
+  const { items } = useScopedDowngradedStateValue(useBag());
   const navigate = useNavigate();
 
   useEffect(() => {
     if (name) {
-      navigate("/all");
+      navigate(items.length ? "/bag" : "/all");
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [name]);
+  }, [items.length, name, navigate]);
 };

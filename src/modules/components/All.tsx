@@ -6,8 +6,9 @@ import { PokemonsList } from "../elements";
 import { useBag } from "../../state/hooks";
 import { useScopedDowngradedStateValue } from "../hooks";
 import { Section } from "../elements";
-import "../../App.css";
 import { Header } from "./Header";
+
+import "../../App.css";
 
 const defaultRowsPerPage = 20;
 
@@ -29,12 +30,9 @@ export const All: React.FC = () => {
     return Math.ceil((totalCount?.count ?? 0) / 20);
   }, [totalCount?.count]);
 
-  const handleChangePage = useCallback(
-    (event: Object, page: number) => {
-      setCurrentPage(page);
-    },
-    [currentPage]
-  );
+  const handleChangePage = useCallback((event: Object, page: number) => {
+    setCurrentPage(page);
+  }, []);
 
   const addToBagHandler = useCallback(
     (pokemon: Pokemon, id: number) => {
@@ -63,18 +61,15 @@ export const All: React.FC = () => {
   return (
     <Box height="100%">
       <Header />
-      <Box display="flex" justifyContent="space-between" pb={2}>
-        <PaginationControls
-          rowsPerPage={defaultRowsPerPage}
-          totalPages={totalPages}
-          currentPage={currentPage}
-          onPageChange={handleChangePage}
-          disabled={isLoadingTotalCount}
-        />
-        <Typography variant="subtitle2">
-          Total {totalCount?.count ?? 0} pokemons
-        </Typography>
-      </Box>
+      <PaginationControls
+        rowsPerPage={defaultRowsPerPage}
+        totalPages={totalPages}
+        totalCount={totalCount?.count}
+        label="Pokemons"
+        currentPage={currentPage}
+        onPageChange={handleChangePage}
+        disabled={isLoadingTotalCount}
+      />
       <Section isLoading={isLoading}>
         <PokemonsList
           items={
