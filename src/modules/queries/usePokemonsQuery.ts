@@ -1,21 +1,9 @@
 import { useQuery } from "react-query";
-import { fetchPokemons } from "../../api-services/fetchPokemons";
+import { fetchPokemons } from "../../api-services/pokemons";
+import { PokemonsQueryResponse } from "../../api-types/pokemons";
+import { QueryParams } from "../../api-types/pagination";
 
 export const POKEMONS_QUERY_KEY = "pokemons-query-key";
-
-export type QueryParams = {
-  offset: number;
-  limit: number;
-};
-
-export type Pokemon = {
-  name: string;
-};
-
-export type PokemonsQueryResponse = {
-  results: Pokemon[];
-  count: number;
-};
 
 export const usePokemonsQuery = (params?: QueryParams) => {
   return useQuery<PokemonsQueryResponse, unknown, PokemonsQueryResponse>(
@@ -27,7 +15,6 @@ export const usePokemonsQuery = (params?: QueryParams) => {
     },
     {
       refetchOnWindowFocus: false,
-      staleTime: 0,
     }
   );
 };

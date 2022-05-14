@@ -1,9 +1,9 @@
 import React, { useCallback } from "react";
 import "../../App.css";
 import { Box, Button, List, ListItem, Paper, Typography } from "@mui/material";
-import { Pokemon } from "../queries/usePokemonsQuery";
 import { useBag } from "../../state/hooks";
 import { useScopedDowngradedStateValue } from "../hooks";
+import { Pokemon } from "../../api-types/pokemons";
 
 type PokemonsListProps = {
   items: any[];

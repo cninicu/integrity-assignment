@@ -1,12 +1,13 @@
 import React, { useCallback, useMemo, useState } from "react";
-import { Box, Typography } from "@mui/material";
-import { Pokemon, usePokemonsQuery } from "../queries/usePokemonsQuery";
+import { Box } from "@mui/material";
+import { usePokemonsQuery } from "../queries";
 import { PaginationControls } from "../elements";
 import { PokemonsList } from "../elements";
 import { useBag } from "../../state/hooks";
 import { useScopedDowngradedStateValue } from "../hooks";
 import { Section } from "../elements";
 import { Header } from "./Header";
+import { Pokemon } from "../../api-types/pokemons";
 
 import "../../App.css";
 

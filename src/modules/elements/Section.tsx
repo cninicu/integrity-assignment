@@ -6,8 +6,8 @@ type SectionProps = {
   isLoading?: boolean;
   errorMessage?: string | ReactElement;
   sectionProps?: any;
-  color?: "primary" | "secondary" | "inherit";
-  children?: any;
+  color?: "primary" | "secondary";
+  children?: ReactElement;
 };
 
 export const Section: React.FC<SectionProps> = ({
