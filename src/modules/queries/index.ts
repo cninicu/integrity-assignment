@@ -1,0 +1,1 @@
+export { usePokemonsQuery } from "./usePokemonsQuery";
