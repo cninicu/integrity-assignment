@@ -10,8 +10,6 @@ import { useTypesQuery } from "../queries/useTypesQuery";
 import { MultipleSelectCheckmarks } from "./MultipleSelectCheckmarks";
 import { useRemoveItemFromBag } from "./hooks";
 
-import "../../App.css";
-
 const defaultRowsPerPage = 20;
 
 export const Bag: React.FC = () => {

@@ -7,8 +7,6 @@ import { Section } from "../elements";
 import { Header } from "./Header";
 import { useInsertItemInBag, useRemoveItemFromBag } from "./hooks";
 
-import "../../App.css";
-
 const defaultRowsPerPage = 20;
 
 export const All: React.FC = () => {

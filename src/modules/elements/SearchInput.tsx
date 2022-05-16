@@ -10,7 +10,13 @@ type SearchInputProps = {
 
 export const SearchInput: React.FC<SearchInputProps> = ({ onChange }) => {
   return (
-    <Box display="flex" justifyContent="flex-end">
+    <Box
+      display="flex"
+      justifyContent="flex-end"
+      sx={{
+        lineHeight: 1,
+      }}
+    >
       <Box width={200}>
         <Input
           size="small"

@@ -4,8 +4,6 @@ import { useBag } from "../../state/hooks";
 import { useScopedDowngradedStateValue } from "../hooks";
 import { Pokemon } from "../../api-types/pokemons";
 
-import "../../App.css";
-
 type PokemonsListProps = {
   items: any[];
   removeFromBag: (id: number) => void;

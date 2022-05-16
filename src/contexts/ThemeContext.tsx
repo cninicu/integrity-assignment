@@ -1,8 +1,9 @@
 import createCache from "@emotion/cache";
-import { CacheProvider } from "@emotion/react";
+import { CacheProvider, Global } from "@emotion/react";
 import { CssBaseline, ThemeProvider } from "@material-ui/core";
 import React, { ReactElement } from "react";
 import { theme } from "../themes";
+import { AppStyles } from "./app-styles";
 
 const APP_KEY = "integrity-assignment";
 
@@ -14,6 +15,7 @@ type ThemeContextProps = {
 
 export const ThemeContext: React.FC<ThemeContextProps> = ({ children }) => (
   <CacheProvider value={cache}>
+    <Global styles={AppStyles} />
     <ThemeProvider theme={theme}>
       <CssBaseline />
       {children}

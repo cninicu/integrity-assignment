@@ -2,8 +2,6 @@ import React, { ReactElement } from "react";
 import { Box, Tab, Tabs } from "@mui/material";
 import { ProfileMenu } from "../elements";
 
-import "../../App.css";
-
 type HeaderProps = {
   children?: ReactElement;
 };

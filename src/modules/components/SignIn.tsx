@@ -5,8 +5,6 @@ import { Box, Button, TextField, Typography } from "@mui/material";
 import { string } from "yup";
 import { useSignIn, useSignInRedirect } from "../hooks";
 
-import "../../App.css";
-
 export const SignIn: React.FC = () => {
   useSignInRedirect();
   const signIn = useSignIn();
