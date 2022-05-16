@@ -3,11 +3,10 @@ import { Box } from "@mui/material";
 import { usePokemonsQuery } from "../queries";
 import { PaginationControls } from "../elements";
 import { PokemonsList } from "../elements";
-import { useBag } from "../../state/hooks";
-import { useScopedDowngradedStateValue } from "../hooks";
 import { Section } from "../elements";
 import { Header } from "./Header";
-import { Pokemon } from "../../api-types/pokemons";
+import { useInsertItemInBag } from "./hooks/useInsertItemInBag";
+import { useRemoveItemFromBag } from "./hooks/useRemoveItemFromBag";
 
 import "../../App.css";
 
@@ -24,8 +23,8 @@ export const All: React.FC = () => {
     offset: defaultRowsPerPage * currentPage - defaultRowsPerPage,
   });
 
-  const bag = useScopedDowngradedStateValue(useBag());
-  const setBag = useBag().set;
+  const insertItemInBagHandler = useInsertItemInBag();
+  const removeItemFromBagHandler = useRemoveItemFromBag();
 
   const totalPages = useMemo(() => {
     return Math.ceil((totalCount?.count ?? 0) / 20);
@@ -34,30 +33,6 @@ export const All: React.FC = () => {
   const handleChangePage = useCallback((event: Object, page: number) => {
     setCurrentPage(page);
   }, []);
-
-  const addToBagHandler = useCallback(
-    (pokemon: Pokemon, id: number) => {
-      setBag({
-        items: [...bag.items, { id, name: pokemon.name }],
-      });
-    },
-    [bag.items, setBag]
-  );
-
-  const removeItemFromBagHandler = useCallback(
-    (id: number) => {
-      let updatedItems = [...bag.items];
-
-      const removeItemIndex = updatedItems.findIndex((item) => item.id === id);
-
-      updatedItems.splice(removeItemIndex, 1);
-
-      setBag({
-        items: updatedItems,
-      });
-    },
-    [bag.items, setBag]
-  );
 
   return (
     <Box height="100%">
@@ -83,7 +58,7 @@ export const All: React.FC = () => {
                 1,
             })) ?? []
           }
-          addToBag={addToBagHandler}
+          addToBag={insertItemInBagHandler}
           removeFromBag={removeItemFromBagHandler}
         />
       </Section>

@@ -6,6 +6,9 @@ import { useScopedDowngradedStateValue, useSimpleSearch } from "../hooks";
 import { useBag } from "../../state/hooks";
 import { Header } from "./Header";
 import { SearchInput } from "../elements/SearchInput";
+import { useTypesQuery } from "../queries/useTypesQuery";
+import { MultipleSelectCheckmarks } from "./MultipleSelectCheckmarks";
+import { useRemoveItemFromBag } from "./hooks";
 
 import "../../App.css";
 
@@ -15,9 +18,18 @@ export const Bag: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchKey, setSearchKey] = useState("");
   const bag = useScopedDowngradedStateValue(useBag());
-  const setBag = useBag().set;
+
+  const { data, isLoading } = useTypesQuery();
+
+  const types = useMemo(() => {
+    if (isLoading) return [];
+
+    return data?.results.map((type) => type.name);
+  }, [data, isLoading]);
 
   const items = useSimpleSearch(bag.items, searchKey);
+
+  const removeItemFromBagHandler = useRemoveItemFromBag();
 
   const totalPages = useMemo(() => {
     return Math.ceil(items.length / defaultRowsPerPage);
@@ -26,21 +38,6 @@ export const Bag: React.FC = () => {
   const handleChangePage = useCallback((event: Object, page: number) => {
     setCurrentPage(page);
   }, []);
-
-  const removeItemFromBagHandler = useCallback(
-    (id: number) => {
-      let updatedItems = [...bag.items];
-
-      const removeItemIndex = updatedItems.findIndex((item) => item.id === id);
-
-      updatedItems.splice(removeItemIndex, 1);
-
-      setBag({
-        items: updatedItems,
-      });
-    },
-    [bag.items, setBag]
-  );
 
   const currentPageFilteredItems = useMemo(() => {
     const endIndex = currentPage * defaultRowsPerPage;
@@ -57,7 +54,13 @@ export const Bag: React.FC = () => {
 
   return (
     <Box height="100%">
-      <Header search={<SearchInput onChange={handleChangeSearchKey} />} />
+      <Header>
+        <Box display="flex" alignItems="end" columnGap={2}>
+          <MultipleSelectCheckmarks values={types} />
+          <SearchInput onChange={handleChangeSearchKey} />
+        </Box>
+      </Header>
+
       <PaginationControls
         totalCount={bag.items.length}
         label="Pokemons"

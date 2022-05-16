@@ -5,19 +5,18 @@ import { ProfileMenu } from "../elements";
 import "../../App.css";
 
 type HeaderProps = {
-  search?: ReactElement;
+  children?: ReactElement;
 };
 
-export const Header: React.FC<HeaderProps> = ({ search }) => {
+export const Header: React.FC<HeaderProps> = ({ children }) => {
   return (
     <Box
       display="flex"
       justifyContent="space-between"
       alignItems="center"
-      py={2}
-      px={2}
+      p={2}
     >
-      <Box width={250} textAlign={"left"}>
+      <Box width={400} textAlign="left">
         <ProfileMenu />
       </Box>
       <Tabs
@@ -31,8 +30,8 @@ export const Header: React.FC<HeaderProps> = ({ search }) => {
         <Tab label="All" value="all" />
         <Tab label="My bag" value="bag" />
       </Tabs>
-      <Box width={250} textAlign={"right"}>
-        {search}
+      <Box width={400} textAlign="right">
+        {children}
       </Box>
     </Box>
   );

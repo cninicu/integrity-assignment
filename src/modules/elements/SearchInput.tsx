@@ -13,6 +13,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({ onChange }) => {
     <Box display="flex" justifyContent="flex-end">
       <Box width={200}>
         <Input
+          size="small"
           fullWidth
           startAdornment={<SearchIcon />}
           placeholder="search"
