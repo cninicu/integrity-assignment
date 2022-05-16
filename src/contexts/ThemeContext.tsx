@@ -3,7 +3,7 @@ import { CacheProvider, Global } from "@emotion/react";
 import { CssBaseline, ThemeProvider } from "@material-ui/core";
 import React, { ReactElement } from "react";
 import { theme } from "../themes";
-import { AppStyles } from "./app-styles";
+import { AppStyles } from "../themes/app-styles";
 
 const APP_KEY = "integrity-assignment";
 
