@@ -1,19 +1,21 @@
 import React from "react";
-import "./App.css";
 import { Router } from "./routes";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Box } from "@mui/material";
+import { ThemeContext } from "./contexts";
 
-function App() {
+import "./App.css";
+
+export const App: React.FC = () => {
   const queryClient = new QueryClient();
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <Box className="App" px={10}>
-        <Router />
-      </Box>
-    </QueryClientProvider>
+    <ThemeContext>
+      <QueryClientProvider client={queryClient}>
+        <Box px={10}>
+          <Router />
+        </Box>
+      </QueryClientProvider>
+    </ThemeContext>
   );
-}
-
-export default App;
+};
