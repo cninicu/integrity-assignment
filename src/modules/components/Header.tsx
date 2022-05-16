@@ -1,8 +1,6 @@
-import React, { ReactElement, useCallback } from "react";
-import { Box, Button, Tab, Tabs, Typography } from "@mui/material";
-import { useScopedDowngradedStateValue } from "../hooks";
-import { useBag, useUser } from "../../state/hooks";
-import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import React, { ReactElement } from "react";
+import { Box, Tab, Tabs } from "@mui/material";
+import { ProfileMenu } from "../elements";
 
 import "../../App.css";
 
@@ -11,15 +9,6 @@ type HeaderProps = {
 };
 
 export const Header: React.FC<HeaderProps> = ({ search }) => {
-  const { name } = useScopedDowngradedStateValue(useUser());
-  const setBag = useBag().set;
-  const setUser = useUser().set;
-
-  const logout = useCallback(() => {
-    setUser({ name: "" });
-    setBag({ items: [] });
-  }, [setBag, setUser]);
-
   return (
     <Box
       display="flex"
@@ -28,18 +17,9 @@ export const Header: React.FC<HeaderProps> = ({ search }) => {
       py={2}
       px={2}
     >
-      <Typography variant="subtitle1">
-        {" "}
-        Hello,{" "}
-        <Typography
-          component="span"
-          style={{
-            fontWeight: 600,
-          }}
-        >
-          {name}
-        </Typography>{" "}
-      </Typography>
+      <Box width={250} textAlign={"left"}>
+        <ProfileMenu />
+      </Box>
       <Tabs
         indicatorColor="primary"
         textColor="primary"
@@ -51,11 +31,9 @@ export const Header: React.FC<HeaderProps> = ({ search }) => {
         <Tab label="All" value="all" />
         <Tab label="My bag" value="bag" />
       </Tabs>
-      {search}
-      <Button size="small" onClick={logout} endIcon={<ExitToAppIcon />}>
-        {" "}
-        Logout{" "}
-      </Button>
+      <Box width={250} textAlign={"right"}>
+        {search}
+      </Box>
     </Box>
   );
 };
