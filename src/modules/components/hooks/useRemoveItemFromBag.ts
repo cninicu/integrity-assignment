@@ -6,7 +6,7 @@ export const useRemoveItemFromBag = () => {
   const bag = useScopedDowngradedStateValue(useBag());
   const setBag = useBag().set;
 
-  const removeItemFromBagHandler = useCallback(
+  return useCallback(
     (id: number) => {
       let updatedItems = [...bag.items];
 
@@ -20,6 +20,4 @@ export const useRemoveItemFromBag = () => {
     },
     [bag.items, setBag]
   );
-
-  return removeItemFromBagHandler;
 };

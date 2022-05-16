@@ -47,19 +47,14 @@ export const MultipleSelectCheckmarks: React.FC<
   return (
     <FormControl sx={{ width: 200 }}>
       <InputLabel>Type</InputLabel>
-
       <Select
         variant="standard"
         multiple
         value={selectedValues}
         onChange={handleChange}
-        // input={<OutlinedInput size="small" placeholder="search" />}
-        renderValue={(selected) => {
-          return selected.length === 0 ? "" : selected.join(", ");
-        }}
+        renderValue={(selected) => selected.join(", ")}
         MenuProps={MenuProps}
       >
-        <MenuItem key="" value="Filter by value" />
         {values.map((value) => (
           <MenuItem key={value} value={value}>
             <Checkbox checked={selectedValues.indexOf(value) > -1} />

@@ -5,8 +5,7 @@ import { PaginationControls } from "../elements";
 import { PokemonsList } from "../elements";
 import { Section } from "../elements";
 import { Header } from "./Header";
-import { useInsertItemInBag } from "./hooks/useInsertItemInBag";
-import { useRemoveItemFromBag } from "./hooks/useRemoveItemFromBag";
+import { useInsertItemInBag, useRemoveItemFromBag } from "./hooks";
 
 import "../../App.css";
 
@@ -25,6 +24,15 @@ export const All: React.FC = () => {
 
   const insertItemInBagHandler = useInsertItemInBag();
   const removeItemFromBagHandler = useRemoveItemFromBag();
+
+  const pokemonNames = useMemo(() => {
+    return (
+      data?.results.map((item, index) => ({
+        name: item.name,
+        id: currentPage * defaultRowsPerPage - defaultRowsPerPage + index + 1,
+      })) ?? []
+    );
+  }, [currentPage, data?.results]);
 
   const totalPages = useMemo(() => {
     return Math.ceil((totalCount?.count ?? 0) / 20);
@@ -48,16 +56,7 @@ export const All: React.FC = () => {
       />
       <Section isLoading={isLoading}>
         <PokemonsList
-          items={
-            data?.results.map((item, index) => ({
-              name: item.name,
-              id:
-                currentPage * defaultRowsPerPage -
-                defaultRowsPerPage +
-                index +
-                1,
-            })) ?? []
-          }
+          items={pokemonNames}
           addToBag={insertItemInBagHandler}
           removeFromBag={removeItemFromBagHandler}
         />

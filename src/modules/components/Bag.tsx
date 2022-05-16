@@ -60,7 +60,6 @@ export const Bag: React.FC = () => {
           <SearchInput onChange={handleChangeSearchKey} />
         </Box>
       </Header>
-
       <PaginationControls
         totalCount={bag.items.length}
         label="Pokemons"
@@ -69,9 +68,8 @@ export const Bag: React.FC = () => {
         currentPage={currentPage}
         onPageChange={handleChangePage}
       />
-
       <PokemonsList
-        items={currentPageFilteredItems ?? []}
+        items={currentPageFilteredItems}
         removeFromBag={removeItemFromBagHandler}
       />
     </Box>

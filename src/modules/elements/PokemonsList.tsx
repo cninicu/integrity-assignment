@@ -1,9 +1,10 @@
 import React, { useCallback } from "react";
-import "../../App.css";
 import { Box, Button, List, ListItem, Paper, Typography } from "@mui/material";
 import { useBag } from "../../state/hooks";
 import { useScopedDowngradedStateValue } from "../hooks";
 import { Pokemon } from "../../api-types/pokemons";
+
+import "../../App.css";
 
 type PokemonsListProps = {
   items: any[];
@@ -64,7 +65,7 @@ export const PokemonsList: React.FC<PokemonsListProps> = ({
               {itemIsAdded(id) ? (
                 <Button
                   style={{
-                    backgroundColor: "red",
+                    backgroundColor: "#EB5353",
                   }}
                   variant="contained"
                   size="small"

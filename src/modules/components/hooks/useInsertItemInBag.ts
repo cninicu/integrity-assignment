@@ -7,7 +7,7 @@ export const useInsertItemInBag = () => {
   const bag = useScopedDowngradedStateValue(useBag());
   const setBag = useBag().set;
 
-  const addToBagHandler = useCallback(
+  return useCallback(
     (pokemon: Pokemon, id: number) => {
       setBag({
         items: [...bag.items, { id, name: pokemon.name }],
@@ -15,6 +15,4 @@ export const useInsertItemInBag = () => {
     },
     [bag.items, setBag]
   );
-
-  return addToBagHandler;
 };

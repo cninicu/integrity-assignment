@@ -23,6 +23,8 @@ export const PaginationControls: React.FC<PaginationControlsProps> = ({
   color = "primary",
   disabled,
 }) => {
+  const hasItems = totalCount > 0;
+
   return (
     <Box display="flex" justifyContent="space-between" pb={2} pl={2} pr={1}>
       <Typography variant="subtitle2">
@@ -37,14 +39,16 @@ export const PaginationControls: React.FC<PaginationControlsProps> = ({
         </Typography>{" "}
         {label}
       </Typography>
-      <Pagination
-        size="small"
-        disabled={disabled}
-        color={color}
-        count={totalPages}
-        page={currentPage}
-        onChange={onPageChange}
-      />
+      {hasItems && (
+        <Pagination
+          size="small"
+          disabled={disabled}
+          color={color}
+          count={totalPages}
+          page={currentPage}
+          onChange={onPageChange}
+        />
+      )}
     </Box>
   );
 };

@@ -51,7 +51,6 @@ export const ProfileMenu: React.FC<ProfileMenuProps> = () => {
       </Box>
 
       <Menu
-        id="fade-menu"
         anchorEl={anchorEl}
         keepMounted
         open={open}
